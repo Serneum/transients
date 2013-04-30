@@ -33,7 +33,7 @@
         <jar destfile="${dist.dir}/${project.name}.jar" basedir="${build.classes.dir}"/>
     </target>
     
-    <target name="compile-main" depends="clean, download">
+    <target name="compile-main" depends="clean, resolve">
         <mkdir dir="${build.dir}"/>
         <mkdir dir="${build.classes.dir}"/>
         <javac srcdir="${src.dir}" destdir="${build.classes.dir}" includeantruntime="false">
@@ -41,7 +41,7 @@
         </javac>
     </target>
     
-    <target name="download" unless="resolve.no" description="Resolve all dependencies">
+    <target name="resolve" unless="resolve.no" description="Resolve all dependencies">
         <mkdir dir="${lib.dir}"/>
         <codestation:resolve server="sernprogramming.com:9095"
                     buildLife="${env.BUILD_LIFE_ID}"
