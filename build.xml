@@ -1,4 +1,5 @@
-<project name="transients" default="dist" basedir=".">
+<project name="transients" default="dist" basedir="."
+    xmlns:codestation="antlib:com.urbancode.ubuild.codestation.client">
     <!--
         PROPERTIES
     -->
@@ -7,6 +8,17 @@
     <property name="build.dir" value="build"/>
     <property name="build.classes.dir" value="${build.dir}/classes"/>
     <property name="dist.dir" value="dist"/>
+    <property name="lib.dir" value="lib"/>
+    
+    <!--
+        PATHS
+    -->
+    <path id="classpath.main">
+        <fileset dir="${lib.dir}">
+          <include name="*.jar" />
+          <exclude name="*-all.jar"/>
+        </fileset>
+    </path>
     
     <!--
         BASE TARGETS
@@ -21,10 +33,19 @@
         <jar destfile="${dist.dir}/${project.name}.jar" basedir="${build.classes.dir}"/>
     </target>
     
-    <target name="compile-main" depends="clean">
+    <target name="compile-main" depends="clean, download">
         <mkdir dir="${build.dir}"/>
         <mkdir dir="${build.classes.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${build.classes.dir}" includeantruntime="false"/>
+        <javac srcdir="${src.dir}" destdir="${build.classes.dir}" includeantruntime="false">
+            <classpath refid="classpath.main"/>
+        </javac>
+    </target>
+    
+    <target name="download" unless="resolve.no" description="Resolve all dependencies">
+        <mkdir dir="${lib.dir}"/>
+        <codestation:resolve server="sernprogramming.com:9095"
+                    buildLife="${env.BUILD_LIFE_ID}"
+                    xmlFile="dependencies.xml"/>
     </target>
     
     <!--
@@ -36,5 +57,6 @@
     
     <target name="clean-all" depends="clean">
         <delete dir="${dist.dir}" failonerror="false"/>
+        <delete dir="${lib.dir}" failonerror="false"/>
     </target>
 </project>
