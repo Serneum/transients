@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://www.urbancode.com/schema/cs/project-dependencies/1.0"
- name="transients" workflow="Build Process [master]">
-	<dependency>
-      <ah-project name="rpg-core" workflow="Build Process [master]"/>
+<project xmlns="http://www.urbancode.com/schema/ubuild/cs/project-dependencies/1.0"
+  name="transients" process="Build Process [master]">
+  <dependencies>
+    <dependency>
+      <project name="rpg-core" process="Build Process [master]"/>
       <criteria status="success"/>
       <delivery artifact-set="dist">
         <directory>lib</directory>

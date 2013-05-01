@@ -1,8 +1,8 @@
 package com.sern.transients.core.character.modifier;
 
-import com.sern.rpg.core.character.modifier.ModifierImpl;
+import com.sern.rpg.core.character.modifier.Modifier;
 
-public class Squealer extends ModifierImpl {
+public class Squealer extends Modifier {
 
     public Squealer() {
         setName("Squealer");

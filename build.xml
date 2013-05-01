@@ -43,9 +43,11 @@
     
     <target name="resolve" unless="resolve.no" description="Resolve all dependencies">
         <mkdir dir="${lib.dir}"/>
-        <codestation:resolve server="sernprogramming.com:9095"
+        <codestation:resolve server="https://sernprogramming.com:9095"
                     buildLife="${env.BUILD_LIFE_ID}"
-                    xmlFile="dependencies.xml"/>
+                    xmlFile="dependencies.xml"
+                    project="transients"
+                    process="Build Process [master]"/>
     </target>
     
     <!--

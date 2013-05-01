@@ -5,7 +5,7 @@ import com.sern.rpg.core.character.enemy.Enemy;
 public class Mutt extends Enemy {
 
     public Mutt() {
-        super("Wretched Mutt", 3);
+        super(1, "Wretched Mutt", 3);
         setBonus(1);
     }
 
